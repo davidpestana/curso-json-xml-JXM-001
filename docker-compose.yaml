@@ -2,6 +2,6 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
       - ./jxm-001/data:/usr/share/nginx/html:ro

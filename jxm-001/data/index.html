@@ -16,6 +16,10 @@
         button2.innerHTML = 'Ver Todos'
         document.body.appendChild(button2);
 
+        const button3 = document.createElement('button');
+        button3.innerHTML = 'Ver menos 50e'
+        document.body.appendChild(button3);
+
         const div = document.createElement('div');
         div.id = 'catalogo';
         document.body.appendChild(div);
@@ -43,11 +47,15 @@
             const productos = await fetch(new URL('https://organic-space-parakeet-6pv76qxwpp2x5pg-5500.app.github.dev/products.json'))
                 .then(r => r.json());
 
-            const disponibles = productos.filter(p => p.stock > 0);
+            const disponibles = productos.filter(({stock})=> stock > 0);
+            console.log(disponibles);
+
+            const menos50 = productos.filter(({precio}) => precio < 50);
             console.log(disponibles);
 
             button1.addEventListener('click',() => dibujarCatalogo(disponibles))
             button2.addEventListener('click',() => dibujarCatalogo(productos))
+            button3.addEventListener('click',() => dibujarCatalogo(menos50))
 
             
             dibujarCatalogo(productos);
